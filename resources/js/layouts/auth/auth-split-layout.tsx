@@ -1,6 +1,6 @@
 import { Brand } from '@/components/ui/brand';
-import { type PropsWithChildren } from 'react';
 import { Title } from '@/components/ui/title';
+import { type PropsWithChildren } from 'react';
 
 export default function AuthSplitLayout({ children, title, description }: PropsWithChildren<{ title: string; description?: string }>) {
     return (
@@ -11,9 +11,7 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
 
                     <Title title={title} description={description} />
 
-                    <div className="space-y-4">
-                        {children}
-                    </div>
+                    <div className="space-y-4">{children}</div>
                 </div>
             </section>
 

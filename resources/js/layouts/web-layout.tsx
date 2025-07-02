@@ -2,7 +2,13 @@ import WebLayoutTemplate from '@/layouts/web/web-simple-layout';
 import { Head } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 
-export default function WebLayout({ children, title, description, tags, ...props }: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
+export default function WebLayout({
+    children,
+    title,
+    description,
+    tags,
+    ...props
+}: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
     return (
         <>
             <Head title={title}>

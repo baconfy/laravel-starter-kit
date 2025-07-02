@@ -2,12 +2,12 @@ import { Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 type LoginForm = {
     email: string;
@@ -99,7 +99,7 @@ export default function Page({ status, canResetPassword }: LoginProps) {
                 </div>
             </form>
 
-            <div className="font-bold text-center text-muted-foreground">
+            <div className="text-center font-bold text-muted-foreground">
                 Don't have an account?{' '}
                 <Link href={route('register')} tabIndex={5} className="link">
                     Sign up

@@ -185,5 +185,5 @@
 }
 
 @utility link {
-    @apply text-primary font-bold hover:underline hover:underline-offset-4;
+    @apply font-bold text-primary hover:underline hover:underline-offset-4;
 }
