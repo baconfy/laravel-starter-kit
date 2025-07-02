@@ -8,8 +8,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-brand: 'Lobster Two', display;
+    --font-title: 'Oswald', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -39,8 +40,8 @@
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
 
-    --color-border: var(--border);
     --color-input: var(--input);
+    --color-border: var(--border);
     --color-ring: var(--ring);
 
     --color-chart-1: var(--chart-1);
@@ -75,11 +76,15 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    html {
+        font-size: 18px;
+    }
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
+    --background: oklch(0.99 0.0001 10);
+    --foreground: oklch(0.48 0.08 43);
 
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
@@ -87,14 +92,14 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
 
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.44 0.121 41.863);
+    --primary-foreground: oklch(1 0.142 41.5);
 
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
 
     --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
+    --muted-foreground: oklch(0.586 0 89.876);
 
     --accent: oklch(0.97 0 0);
     --accent-foreground: oklch(0.205 0 0);
@@ -102,11 +107,9 @@
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
 
-    --input: oklch(0.922 0 0);
-
+    --input: var(--foreground);
     --border: oklch(0.922 0 0);
-
-    --ring: oklch(0.87 0 0);
+    --ring: var(--foreground);
 
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
@@ -127,8 +130,8 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    --background: oklch(0.181 0.019 42.731);
+    --foreground: oklch(0.928 0.03 69.035);
 
     --card: oklch(0.145 0 0);
     --card-foreground: oklch(0.985 0 0);
@@ -136,8 +139,8 @@
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
 
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
+    --primary: oklch(0.44 0.121 41.863);
+    --primary-foreground: oklch(1 0.142 41.5);
 
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
@@ -151,9 +154,7 @@
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
 
-    --input: oklch(0.269 0 0);
-
-    --border: oklch(0.269 0 0);
+    --border: oklch(0.928 0.03 69.035);
 
     --ring: oklch(0.439 0 0);
 
@@ -181,4 +182,8 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+@utility link {
+    @apply text-primary font-bold hover:underline hover:underline-offset-4;
 }

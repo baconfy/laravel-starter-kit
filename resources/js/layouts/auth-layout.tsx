@@ -1,10 +1,18 @@
 import AuthLayoutTemplate from '@/layouts/auth/auth-split-layout';
 import { type PropsWithChildren } from 'react';
+import { Head } from '@inertiajs/react';
 
-export default function AuthLayout({ children, title, description, ...props }: PropsWithChildren<{ title?: string; description?: string }>) {
+export default function AuthLayout({ children, title, description, tags, ...props }: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
     return (
-        <AuthLayoutTemplate title={title} description={description} {...props}>
-            {children}
-        </AuthLayoutTemplate>
+        <>
+            <Head title={title}>
+                <meta name="description" content={description} />
+                {tags && <meta name="keywords" content={tags} />}
+            </Head>
+
+            <AuthLayoutTemplate title={title} description={description} {...props}>
+                {children}
+            </AuthLayoutTemplate>
+        </>
     );
 }

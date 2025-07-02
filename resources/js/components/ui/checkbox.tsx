@@ -1,30 +1,19 @@
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { CheckIcon } from "lucide-react"
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as React from 'react';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
-function Checkbox({
-  className,
-  ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
-  return (
-    <CheckboxPrimitive.Root
-      data-slot="checkbox"
-      className={cn(
-        "peer border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
-      {...props}
-    >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current transition-none"
-      >
-        <CheckIcon className="size-3.5" />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
-  )
-}
+const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>>(
+    ({ className, ...props }, ref) => (
+        <CheckboxPrimitive.Root ref={ref} className={cn("peer size-6 cursor-pointer transition-all appearance-none rounded bg-input", className)} {...props}>
+            <CheckboxPrimitive.Indicator className={cn("flex items-center justify-center text-background")}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="size-4" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                </svg>
+            </CheckboxPrimitive.Indicator>
+        </CheckboxPrimitive.Root>
+    ),
+);
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-export { Checkbox }
+export { Checkbox };

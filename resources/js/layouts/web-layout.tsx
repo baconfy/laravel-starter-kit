@@ -1,8 +1,8 @@
+import WebLayoutTemplate from '@/layouts/web/web-simple-layout';
 import { Head } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
-import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 
-export default function AppLayout({ children, title, description, tags, ...props }: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
+export default function WebLayout({ children, title, description, tags, ...props }: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
     return (
         <>
             <Head title={title}>
@@ -10,9 +10,9 @@ export default function AppLayout({ children, title, description, tags, ...props
                 {tags && <meta name="keywords" content={tags} />}
             </Head>
 
-            <AppLayoutTemplate title={title} description={description} {...props}>
+            <WebLayoutTemplate title={title} description={description} {...props}>
                 {children}
-            </AppLayoutTemplate>
+            </WebLayoutTemplate>
         </>
     );
 }

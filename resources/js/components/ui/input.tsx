@@ -27,18 +27,30 @@ function Input({ className, type, error, ...props }: React.ComponentProps<'input
                 onFocus={handleFocus}
                 data-slot="input"
                 className={cn(
-                    'border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
-                    'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-                    'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
-                    error ? 'border-destructive-foreground focus-visible:border-destructive-foreground focus-visible:ring-destructive-foreground/50 focus-visible:ring-[3px]' : '',
+                    "transition-all outline-none",
+                    "rounded flex w-full min-w-0 h-12 px-3 xl:h-14 xl:px-4",
+                    "ring-2 ring-input/15 bg-input/15 text-input text-base font-bold",
+                    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+                    "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
+                    "focus-visible:ring-input",
+                    "selection:bg-primary selection:text-primary-foreground",
+                    "placeholder:text-input-foreground/50",
+                    "aria-invalid:ring-destructive/20 aria-invalid:border-destructive",
+                    error ? 'ring-destructive-foreground focus-visible:ring-destructive-foreground focus-visible:ring-destructive-foreground/50' : '',
                     className
                 )}
                 {...props}
             />
 
-            {error && <p className="text-xs text-destructive-foreground">{error}</p>}
+            {error && <small className="text-xs text-destructive-foreground m-1">{error}</small>}
         </>
     );
 }
 
 export { Input };
+
+
+
+
+//     '',
+//     '',

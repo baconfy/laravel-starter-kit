@@ -1,4 +1,4 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
@@ -31,83 +31,82 @@ export default function Page() {
 
     return (
         <AuthLayout title="Create an account" description="Enter your details below to create your account">
-            <Head title="Page" />
-            <form className="flex flex-col gap-6" onSubmit={submit}>
-                <div className="grid gap-6">
-                    <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input
-                            id="name"
-                            type="text"
-                            required
-                            autoFocus
-                            tabIndex={1}
-                            autoComplete="name"
-                            value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
-                            disabled={processing}
-                            placeholder="Full name"
-                            error={errors.name}
-                        />
-                    </div>
+            <form className="flex flex-col gap-4" onSubmit={submit}>
+                <div>
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                        id="name"
+                        type="text"
+                        required
+                        autoFocus
+                        tabIndex={1}
+                        autoComplete="name"
+                        value={data.name}
+                        onChange={(e) => setData('name', e.target.value)}
+                        disabled={processing}
+                        placeholder="Full name"
+                        error={errors.name}
+                    />
+                </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            required
-                            tabIndex={2}
-                            autoComplete="email"
-                            value={data.email}
-                            onChange={(e) => setData('email', e.target.value)}
-                            disabled={processing}
-                            placeholder="email@example.com"
-                            error={errors.email}
-                        />
-                    </div>
+                <div>
+                    <Label htmlFor="email">Email address</Label>
+                    <Input
+                        id="email"
+                        type="email"
+                        required
+                        tabIndex={2}
+                        autoComplete="email"
+                        value={data.email}
+                        onChange={(e) => setData('email', e.target.value)}
+                        disabled={processing}
+                        placeholder="email@example.com"
+                        error={errors.email}
+                    />
+                </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="password">Password</Label>
-                        <Input
-                            id="password"
-                            type="password"
-                            required
-                            tabIndex={3}
-                            autoComplete="new-password"
-                            value={data.password}
-                            onChange={(e) => setData('password', e.target.value)}
-                            disabled={processing}
-                            placeholder="Password"
-                            error={errors.password}
-                        />
-                    </div>
+                <div>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                        id="password"
+                        type="password"
+                        required
+                        tabIndex={3}
+                        autoComplete="new-password"
+                        value={data.password}
+                        onChange={(e) => setData('password', e.target.value)}
+                        disabled={processing}
+                        placeholder="Password"
+                        error={errors.password}
+                    />
+                </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="password_confirmation">Confirm password</Label>
-                        <Input
-                            id="password_confirmation"
-                            type="password"
-                            required
-                            tabIndex={4}
-                            autoComplete="new-password"
-                            value={data.password_confirmation}
-                            onChange={(e) => setData('password_confirmation', e.target.value)}
-                            disabled={processing}
-                            placeholder="Confirm password"
-                            error={errors.password_confirmation}
-                        />
-                    </div>
+                <div>
+                    <Label htmlFor="password_confirmation">Confirm password</Label>
+                    <Input
+                        id="password_confirmation"
+                        type="password"
+                        required
+                        tabIndex={4}
+                        autoComplete="new-password"
+                        value={data.password_confirmation}
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        disabled={processing}
+                        placeholder="Confirm password"
+                        error={errors.password_confirmation}
+                    />
+                </div>
 
+                <div>
                     <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         Create account
                     </Button>
                 </div>
 
-                <div className="text-center text-sm text-muted-foreground">
+                <div className="text-center font-bold text-muted-foreground">
                     Already have an account?{' '}
-                    <Link href={route('login')} tabIndex={6}>
+                    <Link href={route('login')} tabIndex={6} className="link">
                         Log in
                     </Link>
                 </div>

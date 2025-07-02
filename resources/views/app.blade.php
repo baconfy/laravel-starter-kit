@@ -37,7 +37,9 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=lobster-two:700" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=oswald:200,300,400,500,600,700" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
         @routes
         @viteReactRefresh
