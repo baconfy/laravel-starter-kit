@@ -80,16 +80,28 @@
             "pint",
             "npm run lint"
         ],
-        "refactor": "rector",
-        "test:type-coverage": "pest --type-coverage --min=100",
-        "test:typos": "peck",
+        "refactor": [
+            "rector"
+        ],
+        "test:type-coverage": [
+            "pest --type-coverage --min=100"
+        ],
+        "test:typos": [
+            "peck"
+        ],
         "test:lint": [
             "pint --test",
             "npm run format:check"
         ],
-        "test:unit": "pest --parallel --coverage --exactly=100.0",
-        "test:types": "phpstan",
-        "test:refactor": "rector --dry-run",
+        "test:unit": [
+            "pest --parallel --coverage --exactly=100.0"
+        ],
+        "test:types": [
+            "phpstan"
+        ],
+        "test:refactor": [
+            "rector --dry-run"
+        ],
         "test": [
             "@test:unit",
             "@test:type-coverage",
