@@ -18,6 +18,14 @@ use Inertia\Response;
 final class RegisteredUserController
 {
     /**
+     * Show the registration page.
+     */
+    public function create(): Response
+    {
+        return Inertia::render('auth/register/page');
+    }
+
+    /**
      * Handle an incoming registration request.
      *
      * @throws ValidationException
@@ -31,9 +39,9 @@ final class RegisteredUserController
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $request->string('name')->value(),
+            'email' => $request->string('email')->value(),
+            'password' => Hash::make($request->string('password')->value()),
         ]);
 
         event(new Registered($user));
@@ -41,13 +49,5 @@ final class RegisteredUserController
         Auth::login($user);
 
         return redirect()->intended(route('dashboard', absolute: false));
-    }
-
-    /**
-     * Show the registration page.
-     */
-    public function create(): Response
-    {
-        return Inertia::render('auth/register');
     }
 }

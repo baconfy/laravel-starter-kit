@@ -1,9 +1,7 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,7 +14,7 @@ type RegisterForm = {
     password_confirmation: string;
 };
 
-export default function Register() {
+export default function Page() {
     const { data, setData, post, processing, errors, reset } = useForm<Required<RegisterForm>>({
         name: '',
         email: '',
@@ -33,7 +31,7 @@ export default function Register() {
 
     return (
         <AuthLayout title="Create an account" description="Enter your details below to create your account">
-            <Head title="Register" />
+            <Head title="Page" />
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
@@ -49,8 +47,8 @@ export default function Register() {
                             onChange={(e) => setData('name', e.target.value)}
                             disabled={processing}
                             placeholder="Full name"
+                            error={errors.name}
                         />
-                        <InputError message={errors.name} className="mt-2" />
                     </div>
 
                     <div className="grid gap-2">
@@ -65,8 +63,8 @@ export default function Register() {
                             onChange={(e) => setData('email', e.target.value)}
                             disabled={processing}
                             placeholder="email@example.com"
+                            error={errors.email}
                         />
-                        <InputError message={errors.email} />
                     </div>
 
                     <div className="grid gap-2">
@@ -81,8 +79,8 @@ export default function Register() {
                             onChange={(e) => setData('password', e.target.value)}
                             disabled={processing}
                             placeholder="Password"
+                            error={errors.password}
                         />
-                        <InputError message={errors.password} />
                     </div>
 
                     <div className="grid gap-2">
@@ -97,8 +95,8 @@ export default function Register() {
                             onChange={(e) => setData('password_confirmation', e.target.value)}
                             disabled={processing}
                             placeholder="Confirm password"
+                            error={errors.password_confirmation}
                         />
-                        <InputError message={errors.password_confirmation} />
                     </div>
 
                     <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={processing}>
@@ -109,9 +107,9 @@ export default function Register() {
 
                 <div className="text-center text-sm text-muted-foreground">
                     Already have an account?{' '}
-                    <TextLink href={route('login')} tabIndex={6}>
+                    <Link href={route('login')} tabIndex={6}>
                         Log in
-                    </TextLink>
+                    </Link>
                 </div>
             </form>
         </AuthLayout>

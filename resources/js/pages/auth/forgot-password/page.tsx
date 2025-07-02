@@ -1,16 +1,13 @@
-// Components
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
 
-export default function ForgotPassword({ status }: { status?: string }) {
+export default function Page({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm<Required<{ email: string }>>({
         email: '',
     });
@@ -40,9 +37,8 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             autoFocus
                             onChange={(e) => setData('email', e.target.value)}
                             placeholder="email@example.com"
+                            error={errors.email}
                         />
-
-                        <InputError message={errors.email} />
                     </div>
 
                     <div className="my-6 flex items-center justify-start">
@@ -55,7 +51,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
                 <div className="space-x-1 text-center text-sm text-muted-foreground">
                     <span>Or, return to</span>
-                    <TextLink href={route('login')}>log in</TextLink>
+                    <Link href={route('login')}>log in</Link>
                 </div>
             </div>
         </AuthLayout>

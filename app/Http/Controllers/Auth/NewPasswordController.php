@@ -22,7 +22,7 @@ final class NewPasswordController
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('auth/reset-password', [
+        return Inertia::render('auth/reset-password/page', [
             'email' => $request->string('email'),
             'token' => $request->route('token'),
         ]);

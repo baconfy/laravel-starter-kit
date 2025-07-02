@@ -1,15 +1,13 @@
-// Components
 import { Head, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
 
-export default function ConfirmPassword() {
+export default function Page() {
     const { data, setData, post, processing, errors, reset } = useForm<Required<{ password: string }>>({
         password: '',
     });
@@ -41,10 +39,9 @@ export default function ConfirmPassword() {
                             autoComplete="current-password"
                             value={data.password}
                             autoFocus
+                            error={errors.password}
                             onChange={(e) => setData('password', e.target.value)}
                         />
-
-                        <InputError message={errors.password} />
                     </div>
 
                     <div className="flex items-center">

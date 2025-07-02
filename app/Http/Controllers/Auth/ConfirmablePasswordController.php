@@ -18,21 +18,18 @@ final class ConfirmablePasswordController
      */
     public function show(): Response
     {
-        return Inertia::render('auth/confirm-password');
+        return Inertia::render('auth/confirm-password/page');
     }
 
     /**
      * Confirm the user's password.
+     *
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
-            'password' => $request->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
+        if (! Auth::guard('web')->validate(['email' => $request->user()->email, 'password' => $request->string('password')])) {
+            throw ValidationException::withMessages(['password' => __('auth.password')]);
         }
 
         $request->session()->put('auth.password_confirmed_at', time());

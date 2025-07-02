@@ -1,13 +1,11 @@
-// Components
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import AuthLayout from '@/layouts/auth-layout';
 
-export default function VerifyEmail({ status }: { status?: string }) {
+export default function Page({ status }: { status?: string }) {
     const { post, processing } = useForm({});
 
     const submit: FormEventHandler = (e) => {
@@ -32,9 +30,9 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     Resend verification email
                 </Button>
 
-                <TextLink href={route('logout')} method="post" className="mx-auto block text-sm">
+                <Link href={route('logout')} method="post" className="mx-auto block text-sm">
                     Log out
-                </TextLink>
+                </Link>
             </form>
         </AuthLayout>
     );
