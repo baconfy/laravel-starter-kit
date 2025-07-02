@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 test('guests are redirected to the login page', function () {
@@ -7,7 +9,7 @@ test('guests are redirected to the login page', function () {
 });
 
 test('authenticated users can visit the dashboard', function () {
-    $this->actingAs($user = User::factory()->create());
+    $response = $this->actingAs(User::factory()->create())->get('/dashboard');
 
-    $this->get('/dashboard')->assertOk();
+    $response->assertOk();
 });

@@ -11,23 +11,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class RegisteredUserController
 {
     /**
-     * Show the registration page.
-     */
-    public function create(): Response
-    {
-        return Inertia::render('auth/register');
-    }
-
-    /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -48,5 +41,13 @@ final class RegisteredUserController
         Auth::login($user);
 
         return redirect()->intended(route('dashboard', absolute: false));
+    }
+
+    /**
+     * Show the registration page.
+     */
+    public function create(): Response
+    {
+        return Inertia::render('auth/register');
     }
 }

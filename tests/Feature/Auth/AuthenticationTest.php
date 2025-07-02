@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 test('login screen can be rendered', function () {
@@ -11,10 +13,7 @@ test('login screen can be rendered', function () {
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'password',
-    ]);
+    $response = $this->post('/login', ['email' => $user->email, 'password' => 'password']);
 
     $this->assertAuthenticated();
     $response->assertRedirect(route('dashboard', absolute: false));
@@ -23,10 +22,7 @@ test('users can authenticate using the login screen', function () {
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
+    $this->post('/login', ['email' => $user->email, 'password' => 'wrong-password']);
 
     $this->assertGuest();
 });
@@ -38,4 +34,19 @@ test('users can logout', function () {
 
     $this->assertGuest();
     $response->assertRedirect('/');
+});
+
+test('users are rate limited after too many login attempts', function () {
+    $user = User::factory()->create();
+
+    // Attempt to log in with incorrect password multiple times to trigger rate limiting
+    for ($i = 0; $i < 5; $i++) {
+        $response = $this->post('/login', ['email' => $user->email, 'password' => 'wrong-password']);
+    }
+
+    // The next attempt should be rate limited
+    $response = $this->post('/login', ['email' => $user->email, 'password' => 'wrong-password']);
+
+    $response->assertSessionHasErrors('email');
+    $this->assertStringContainsString('Too many login attempts', session()->get('errors')->first('email'));
 });

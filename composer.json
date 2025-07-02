@@ -85,7 +85,7 @@
         "test:typos": "peck",
         "test:lint": [
             "pint --test",
-            "npm run test:lint"
+            "npm run format:check"
         ],
         "test:unit": "pest --parallel --coverage --exactly=100.0",
         "test:types": "phpstan",
