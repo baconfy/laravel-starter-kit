@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 require __DIR__.'/app.php';
 
-Route::inertia('/', 'web/welcome/page')->name('home');
+Route::inertia('/', 'web/welcome/page')->name('welcome');

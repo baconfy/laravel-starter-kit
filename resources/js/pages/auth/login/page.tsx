@@ -85,7 +85,7 @@ export default function Page({ status, canResetPassword }: LoginProps) {
                     </div>
 
                     {canResetPassword && (
-                        <Link href={route('password.request')} tabIndex={5}>
+                        <Link href={route('password.request')} tabIndex={5} className="link text-sm">
                             Forgot password?
                         </Link>
                     )}
@@ -93,7 +93,7 @@ export default function Page({ status, canResetPassword }: LoginProps) {
 
                 <div>
                     <Button type="submit" className="w-full" tabIndex={4} disabled={processing}>
-                        {processing && <LoaderCircle className="size-6 animate-spin" />}
+                        {processing && <LoaderCircle className="size-4 animate-spin" />}
                         Log in
                     </Button>
                 </div>

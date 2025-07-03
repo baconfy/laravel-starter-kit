@@ -9,8 +9,8 @@
 
 @theme {
     --font-brand: 'Lobster Two', display;
-    --font-title: 'Oswald', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-title: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -78,12 +78,12 @@
     }
 
     html {
-        font-size: 18px;
+        @apply no-scrollbar bg-background;
     }
 }
 
 :root {
-    --background: oklch(0.99 0.0001 10);
+    --background: oklch(1 0 99);
     --foreground: oklch(0.48 0.08 43);
 
     --card: oklch(1 0 0);
@@ -101,15 +101,15 @@
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.586 0 89.876);
 
-    --accent: oklch(0.97 0 0);
+    --accent: oklch(0.99 0.032 41.5);
     --accent-foreground: oklch(0.205 0 0);
 
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
 
-    --input: var(--foreground);
+    --input: oklch(0.92 0.005 60);
     --border: oklch(0.922 0 0);
-    --ring: var(--foreground);
+    --ring: oklch(0.92 0.005 60);
 
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
@@ -130,7 +130,7 @@
 }
 
 .dark {
-    --background: oklch(0.181 0.019 42.731);
+    --background: oklch(0.158 0.014 45.235);
     --foreground: oklch(0.928 0.03 69.035);
 
     --card: oklch(0.145 0 0);
@@ -139,7 +139,7 @@
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
 
-    --primary: oklch(0.44 0.121 41.863);
+    --primary: oklch(0.542 0.153 41.016);
     --primary-foreground: oklch(1 0.142 41.5);
 
     --secondary: oklch(0.269 0 0);
@@ -180,10 +180,23 @@
     }
 
     body {
-        @apply bg-background text-foreground;
+        @apply no-scrollbar bg-background text-foreground antialiased;
     }
 }
 
 @utility link {
-    @apply font-bold text-primary hover:underline hover:underline-offset-4;
+    @apply inline-flex clickable cursor-pointer items-center justify-center gap-1 leading-none font-bold text-primary transition-all hover:underline hover:underline-offset-4;
+}
+
+@utility clickable {
+    @apply hover:cursor-pointer active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+}
+
+@utility no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

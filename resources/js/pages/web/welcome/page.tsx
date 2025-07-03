@@ -2,37 +2,36 @@ import { Brand } from '@/components/ui/brand';
 import WebLayout from '@/layouts/web-layout';
 import { type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
+import { Fingerprint, LayoutDashboard, UserPen } from 'lucide-react';
 
 export default function Page() {
     const { auth } = usePage<SharedData>().props;
 
     return (
         <WebLayout title="Welcome to Banconfy" description="Life's Better with Baconfy." tags="welcome, baconfy">
-            <div className="space-y-12 text-center">
-                <div className="space-y-2">
-                    <h1 className="font-title text-xl xl:text-3xl">
-                        Welcome to <Brand className="text-6xl xl:text-8xl" />
-                    </h1>
-                    <p className="-mt-3 mr-14 italic">Life's better with Baconfy.</p>
+            <div className="text-center">
+                <div className="relative space-y-2 md:scale-150">
+                    <p className="absolute top-2 left-12 text-lg tracking-tight italic md:top-2 md:left-24">The missing ingredient? It's</p>
+                    <Brand className="text-8xl xl:text-9xl" />
                 </div>
-
-                <nav className="flex items-center justify-center gap-4">
-                    {auth.user ? (
-                        <Link href={route('dashboard')} className="link">
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link href={route('login')} className="link">
-                                Login
-                            </Link>
-                            <Link href={route('register')} className="link">
-                                Register
-                            </Link>
-                        </>
-                    )}
-                </nav>
             </div>
+
+            <nav className="mt-16 flex items-center justify-center gap-8">
+                {auth.user ? (
+                    <Link href={route('dashboard')} className="link text-lg">
+                        <LayoutDashboard className="size-6" /> Dashboard
+                    </Link>
+                ) : (
+                    <>
+                        <Link href={route('login')} className="link text-lg">
+                            <Fingerprint className="size-6" /> Login
+                        </Link>
+                        <Link href={route('register')} className="link text-lg">
+                            <UserPen className="size-6" /> Register
+                        </Link>
+                    </>
+                )}
+            </nav>
         </WebLayout>
     );
 }

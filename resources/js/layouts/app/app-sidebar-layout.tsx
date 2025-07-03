@@ -1,11 +1,5 @@
-import { type PropsWithChildren } from 'react';
+import React from 'react';
 
-export default function AppSidebarLayout({ children, title, description, ...props }: PropsWithChildren<{ title?: string; description?: string }>) {
-    return (
-        <div {...props}>
-            <h1>{title}</h1>
-            <small>{description}</small>
-            <div>{children}</div>
-        </div>
-    );
+export default function AppSidebarLayout({ children }: { children: React.ReactNode }) {
+    return <div className="flex min-h-screen flex-col">{children}</div>;
 }

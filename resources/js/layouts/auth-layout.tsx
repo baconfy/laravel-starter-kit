@@ -8,7 +8,7 @@ export default function AuthLayout({
     description,
     tags,
     ...props
-}: PropsWithChildren<{ title?: string; description?: string; tags?: string }>) {
+}: PropsWithChildren<{ title: string; description?: string; tags?: string }>) {
     return (
         <>
             <Head title={title}>

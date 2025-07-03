@@ -1,7 +1,8 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,9 +21,11 @@ export default function Page({ status }: { status?: string }) {
 
     return (
         <AuthLayout title="Forgot password" description="Enter your email to receive a password reset link">
-            <Head title="Forgot password" />
-
-            {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
+            {status && (
+                <Alert variant="success">
+                    <AlertDescription>{status}</AlertDescription>
+                </Alert>
+            )}
 
             <div className="space-y-6">
                 <form className="flex flex-col gap-4" onSubmit={submit}>
@@ -43,7 +46,7 @@ export default function Page({ status }: { status?: string }) {
 
                     <div>
                         <Button className="w-full" disabled={processing}>
-                            {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                            {processing && <LoaderCircle className="size-4 animate-spin" />}
                             Email password reset link
                         </Button>
                     </div>
