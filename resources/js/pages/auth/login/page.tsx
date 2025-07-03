@@ -20,7 +20,7 @@ interface LoginProps {
     canResetPassword: boolean;
 }
 
-export default function Page({ status, canResetPassword }: LoginProps) {
+export default function Page({ status }: LoginProps) {
     const { data, setData, post, processing, errors, reset } = useForm<Required<LoginForm>>({
         email: '',
         password: '',
@@ -84,11 +84,9 @@ export default function Page({ status, canResetPassword }: LoginProps) {
                         <Label htmlFor="remember">Remember me</Label>
                     </div>
 
-                    {canResetPassword && (
-                        <Link href={route('password.request')} tabIndex={5} className="link text-sm">
-                            Forgot password?
-                        </Link>
-                    )}
+                    <Link href={route('password.request')} tabIndex={5} className="link text-sm">
+                        Forgot password?
+                    </Link>
                 </div>
 
                 <div>
