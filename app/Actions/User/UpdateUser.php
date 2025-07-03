@@ -29,6 +29,10 @@ final readonly class UpdateUser
 
             $updated = $user->update($payload);
 
+            if (! $user->refresh()->email_verified_at) {
+                $user->sendEmailVerificationNotification();
+            }
+
             event(new UserHasBeenUpdated($user));
 
             return $updated;

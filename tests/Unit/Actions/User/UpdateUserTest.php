@@ -5,8 +5,10 @@ declare(strict_types=1);
 use App\Actions\User\UpdateUser;
 use App\Events\User\UserHasBeenUpdated;
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 it('updates a user successfully', function () {
     // Arrange
@@ -40,6 +42,7 @@ it('is not possible to update the user password with action.', function () {
 it('set user as unverified if email was changed', function () {
     // Arrange
     Event::fake(UserHasBeenUpdated::class);
+    Notification::fake();
     $user = User::factory()->create();
     $payload = ['email' => fake()->safeEmail];
 
@@ -51,4 +54,5 @@ it('set user as unverified if email was changed', function () {
         ->and($user->email)->toBe($payload['email'])
         ->and($user->email_verified_at)->toBeNull();
     Event::assertDispatched(UserHasBeenUpdated::class);
+    Notification::assertSentTo($user, VerifyEmail::class);
 });
