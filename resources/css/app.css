@@ -37,6 +37,9 @@
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
 
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
 
@@ -83,7 +86,7 @@
 }
 
 :root {
-    --background: oklch(1 0 99);
+    --background: oklch(1 0 89.876);
     --foreground: oklch(0.48 0.08 43);
 
     --card: oklch(1 0 0);
@@ -103,6 +106,9 @@
 
     --accent: oklch(0.99 0.032 41.5);
     --accent-foreground: oklch(0.205 0 0);
+
+    --success: oklch(0.536 0.158 139.731);
+    --success-foreground: oklch(0.864 0.273 141.64);
 
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
@@ -150,6 +156,9 @@
 
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
+
+    --success: oklch(0.536 0.158 139.731);
+    --success-foreground: oklch(0.864 0.273 141.64);
 
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);

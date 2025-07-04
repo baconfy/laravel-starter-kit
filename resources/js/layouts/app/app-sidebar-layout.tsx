@@ -3,7 +3,7 @@ import { Brand, BrandIcon } from '@/components/ui/brand';
 import { cn } from '@/lib/utils';
 import { SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { AlignRight, Home, LayoutDashboard, Settings2, User, X } from 'lucide-react';
+import { AlignRight, Home, LayoutDashboard, Settings, User, X } from 'lucide-react';
 import React from 'react';
 
 const navigation = [
@@ -11,7 +11,7 @@ const navigation = [
         title: 'Menu',
         items: [
             { label: 'Dashboard', route: 'app.dashboard', icon: LayoutDashboard },
-            { label: 'Settings', route: 'app.settings', icon: Settings2 },
+            { label: 'Settings', route: 'app.settings', icon: Settings },
         ],
     },
     {
@@ -25,7 +25,7 @@ export default function AppSidebarLayout({ children }: { children: React.ReactNo
         <div className="flex max-h-screen min-h-screen gap-0">
             <Sidebar />
 
-            <div className="flex grow flex-col gap-8 overflow-y-auto p-5 md:gap-12 md:p-16">
+            <div className="flex grow flex-col gap-4 overflow-y-auto p-5 md:gap-12 md:p-16">
                 <header className="flex items-center justify-between md:hidden">
                     <Link href={route('app.dashboard')} aria-label="Back to dashboard">
                         <BrandIcon />
@@ -36,7 +36,7 @@ export default function AppSidebarLayout({ children }: { children: React.ReactNo
                     </label>
                 </header>
 
-                <main className="flex grow flex-col gap-8">{children}</main>
+                <main className="flex grow flex-col gap-6 md:gap-8">{children}</main>
             </div>
         </div>
     );
@@ -56,7 +56,7 @@ const Sidebar = () => {
             <aside
                 className={cn(
                     'peer-checked:translate-x-0 peer-checked:delay-0 peer-checked:ease-in-out peer-checked:animate-in',
-                    'absolute inset-0 z-[20] flex w-[90vw] flex-col items-start justify-between border-r bg-background px-8 py-12 shadow',
+                    'absolute inset-0 z-[20] flex w-[90vw] flex-col items-start justify-between border-r bg-background px-8 py-16 shadow',
                     'max-lg:-translate-x-full max-lg:transform max-lg:transition-all max-lg:duration-200',
                     'md:relative md:w-[20vw] md:translate-x-0 md:border-none md:shadow-none',
                 )}
@@ -82,8 +82,9 @@ const Sidebar = () => {
                                                 key={JSON.stringify(item)}
                                                 aria-current={route().current(item.route) ? 'page' : 'false'}
                                                 className={cn('group flex items-center gap-2 rounded font-bold tracking-tight uppercase', {
-                                                    'cursor-default bg-primary text-background': route().current(item.route),
                                                     'clickable text-muted-foreground hover:bg-primary/10': !route().current(item.route),
+                                                    'cursor-default bg-primary text-background':
+                                                        route().current(item.route) || route().current(`${item.route}.*`),
                                                 })}
                                             >
                                                 <div className="flex items-center justify-start gap-2 px-6 py-4">
@@ -111,10 +112,7 @@ const Sidebar = () => {
                         </AvatarFallback>
                     </Avatar>
 
-                    <div className="text-center">
-                        <h1 className="line-clamp-1 font-title text-2xl font-bold">{auth.user.name}</h1>
-                        <p className="line-clamp-1 text-muted-foreground">{auth.user.email}</p>
-                    </div>
+                    <h1 className="line-clamp-1 font-title text-2xl font-bold">{auth.user.name}</h1>
                 </footer>
             </aside>
         </>

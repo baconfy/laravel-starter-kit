@@ -17,9 +17,9 @@ const buttonVariants = cva(
                 link: 'font-bold text-primary underline-offset-4 hover:underline'
             },
             size: {
-                default: 'h-12 md:h-12 px-4 has-[>svg]:px-4',
-                sm: 'h-10 rounded px-4 has-[>svg]:px-3.5',
-                lg: 'h-10 rounded px-6 has-[>svg]:px-4',
+                default: 'rounded h-12 md:h-14 px-6 has-[>svg]:px-4',
+                sm: 'rounded h-10 px-4 has-[>svg]:px-3.5',
+                lg: 'rounded h-10 px-6 has-[>svg]:px-4',
                 icon: 'size-9'
             }
         },
@@ -38,7 +38,7 @@ function Button({ className, variant, size, asChild = false, ...props }: React.C
             {...props}
             data-slot="button"
             className={cn(
-                'clickable rounded whitespace-nowrap font-bold outline-none transition-all',
+                'clickable rounded w-full whitespace-nowrap font-bold outline-none transition-all',
                 'disabled:pointer-events-none disabled:opacity-50',
                 'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
                 '[&_svg]:pointer-events-none [&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:shrink-0',

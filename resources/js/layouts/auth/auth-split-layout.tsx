@@ -1,5 +1,4 @@
 import { Brand } from '@/components/ui/brand';
-import { Title } from '@/components/ui/title';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 
@@ -13,7 +12,10 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
                     </Link>
 
                     <div className="space-y-4">
-                        <Title title={title} description={description} />
+                        <div className="space-y-2">
+                            <h1 className="font-title text-3xl font-bold tracking-tight">{title}</h1>
+                            <p className="text-muted-foreground">{description}</p>
+                        </div>
 
                         {children}
                     </div>

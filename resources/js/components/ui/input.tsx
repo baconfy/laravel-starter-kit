@@ -29,7 +29,7 @@ function Input({ className, type, error, ...props }: React.ComponentProps<'input
                 className={cn(
                     "transition-all outline-none",
                     "rounded flex w-full min-w-0 h-12 px-3 md:h-14 md:px-4",
-                    "ring-2 ring-input bg-input text-primary text-lg font-bold",
+                    "ring-2 ring-input bg-input text-primary font-bold",
                     "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                     "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
                     "focus-visible:ring-primary",
