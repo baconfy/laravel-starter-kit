@@ -18,7 +18,7 @@ export default function Page() {
 
             <nav className="mt-12 flex items-center justify-center gap-8 md:mt-28">
                 {auth.user ? (
-                    <Link href={route('dashboard')} className="link text-lg">
+                    <Link href={route('app.dashboard')} className="link text-lg">
                         <LayoutDashboard className="size-6" /> Dashboard
                     </Link>
                 ) : (

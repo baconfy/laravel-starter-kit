@@ -17,9 +17,9 @@ export default function Page() {
                     <AvatarFallback className="text-3xl font-bold">{getInitials(auth.user.name)}</AvatarFallback>
                 </Avatar>
 
-                <div className="-space-y-1 leading-tight">
-                    <p className="text-xl font-bold">Welcome,</p>
-                    <h1 className="font-title text-3xl font-bold">{auth.user.name}</h1>
+                <div className="leading-tight">
+                    <p className="font-bold">Welcome,</p>
+                    <h1 className="font-title text-4xl font-bold">{auth.user.name}</h1>
                 </div>
             </div>
 

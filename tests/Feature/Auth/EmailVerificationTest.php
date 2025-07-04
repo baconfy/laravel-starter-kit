@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 test('email verification screen can be rendered', function () {
     $user = User::factory()->unverified()->create();
 
-    $response = $this->actingAs($user)->get('/verify-email');
+    $response = $this->actingAs($user)->get(route('verification.notice'));
 
     $response->assertStatus(200);
 });
@@ -20,9 +20,9 @@ test('email verification screen can be rendered', function () {
 test('verified users are redirected from email verification screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->get('/verify-email');
+    $response = $this->actingAs($user)->get(route('verification.notice'));
 
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('app.dashboard', absolute: false));
 });
 
 test('email can be verified', function () {
@@ -36,7 +36,7 @@ test('email can be verified', function () {
 
     Event::assertDispatched(Verified::class);
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
-    $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+    $response->assertRedirect(route('app.dashboard', absolute: false).'?verified=1');
 });
 
 test('already verified email redirects properly', function () {
@@ -49,7 +49,7 @@ test('already verified email redirects properly', function () {
     $response = $this->actingAs($user)->get($verificationUrl);
 
     Event::assertNotDispatched(Verified::class);
-    $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+    $response->assertRedirect(route('app.dashboard', absolute: false).'?verified=1');
 });
 
 test('email is not verified with invalid hash', function () {
@@ -77,6 +77,6 @@ test('verification email is not sent if user is already verified', function () {
 
     $response = $this->actingAs($user)->post('/email/verification-notification');
 
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('app.dashboard', absolute: false));
     Notification::assertNothingSent();
 });

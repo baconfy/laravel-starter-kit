@@ -6,6 +6,20 @@ import { Link, usePage } from '@inertiajs/react';
 import { AlignRight, Home, LayoutDashboard, Settings2, User, X } from 'lucide-react';
 import React from 'react';
 
+const navigation = [
+    {
+        title: 'Menu',
+        items: [
+            { label: 'Dashboard', route: 'app.dashboard', icon: LayoutDashboard },
+            { label: 'Settings', route: 'app.settings', icon: Settings2 },
+        ],
+    },
+    {
+        title: 'Return to',
+        items: [{ label: 'Home', route: 'welcome', icon: Home }],
+    },
+];
+
 export default function AppSidebarLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex max-h-screen min-h-screen gap-0">
@@ -13,7 +27,7 @@ export default function AppSidebarLayout({ children }: { children: React.ReactNo
 
             <div className="flex grow flex-col gap-8 overflow-y-auto p-5 md:gap-12 md:p-16">
                 <header className="flex items-center justify-between md:hidden">
-                    <Link href={route('dashboard')} aria-label="Back to dashboard">
+                    <Link href={route('app.dashboard')} aria-label="Back to dashboard">
                         <BrandIcon />
                     </Link>
 
@@ -30,20 +44,6 @@ export default function AppSidebarLayout({ children }: { children: React.ReactNo
 
 const Sidebar = () => {
     const { auth } = usePage<SharedData>().props;
-
-    const navigation = [
-        {
-            title: 'Menu',
-            items: [
-                { label: 'Dashboard', route: 'dashboard', icon: LayoutDashboard },
-                { label: 'Settings', route: 'welcome', icon: Settings2 },
-            ],
-        },
-        {
-            title: 'Return to',
-            items: [{ label: 'Home', route: 'welcome', icon: Home }],
-        },
-    ];
 
     return (
         <>

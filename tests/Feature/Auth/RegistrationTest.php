@@ -14,5 +14,5 @@ test('new users can register', function () {
     $response = $this->post(route('register'), $payload);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('app.dashboard', absolute: false));
 });
