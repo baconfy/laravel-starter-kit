@@ -143,6 +143,6 @@ return [
     | Disabled by default.
     |
     */
-    NunoMaduro\Essentials\Configurables\Unguard::class => true,
+    NunoMaduro\Essentials\Configurables\Unguard::class => false,
 
 ];

@@ -19,7 +19,7 @@ final class ProfileController
      *
      * @return Response The Inertia response containing the profile creation page.
      */
-    public function create(): Response
+    public function edit(): Response
     {
         return Inertia::render('app/settings/profile/page');
     }

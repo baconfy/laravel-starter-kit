@@ -2,10 +2,10 @@ import { Heading } from '@/components/app/heading';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Layout from '@/pages/app/settings/layout';
+import SettingsLayout from '@/layouts/app/settings/layout';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, ThumbsUp } from 'lucide-react';
 import { FormEventHandler, useRef } from 'react';
 
 export default function Page() {
@@ -38,7 +38,7 @@ export default function Page() {
     };
 
     return (
-        <Layout>
+        <SettingsLayout>
             <div className="space-y-6">
                 <div className="flex items-center justify-between">
                     <Heading title="Update password" description="Ensure your account is using a long, random password to stay secure" />
@@ -50,7 +50,10 @@ export default function Page() {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-muted-foreground">Saved</p>
+                        <p className="flex gap-1 font-bold text-success">
+                            <ThumbsUp className="size-6" />
+                            Saved!
+                        </p>
                     </Transition>
                 </div>
 
@@ -98,6 +101,6 @@ export default function Page() {
                     </Button>
                 </form>
             </div>
-        </Layout>
+        </SettingsLayout>
     );
 }

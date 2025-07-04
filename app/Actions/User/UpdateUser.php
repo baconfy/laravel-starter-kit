@@ -7,7 +7,7 @@ namespace App\Actions\User;
 use App\Events\User\UserHasBeenUpdated;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use InvalidArgumentException;
+use Illuminate\Support\Facades\Hash;
 
 final readonly class UpdateUser
 {
@@ -18,9 +18,7 @@ final readonly class UpdateUser
      */
     public function handle(User $user, array $payload): bool
     {
-        if (array_key_exists('password', $payload)) {
-            throw new InvalidArgumentException(__('Password is not allowed to update.'));
-        }
+        $this->sanitize($payload);
 
         return DB::transaction(function () use ($user, $payload) {
             if (isset($payload['email']) && $payload['email'] !== $user->email) {
@@ -37,5 +35,17 @@ final readonly class UpdateUser
 
             return $updated;
         });
+    }
+
+    /**
+     * Sanitize the payload by hashing the password if necessary.
+     *
+     * @param  array<string, mixed>  $payload
+     */
+    private function sanitize(array &$payload): void
+    {
+        if (array_key_exists('password', $payload) && isset($payload['password'])) {
+            $payload['password'] = Hash::make($payload['password']);
+        }
     }
 }

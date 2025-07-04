@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/react';
 import { KeyRound, Settings2, User } from 'lucide-react';
 import React from 'react';
 
-const Layout = ({ children, ...props }: React.ComponentProps<'div'>) => {
+const SettingsLayout = ({ children, ...props }: React.ComponentProps<'div'>) => {
     const navigation = [
         { label: 'Profile', route: 'app.settings', icon: User },
         { label: 'Password', route: 'app.settings.password', icon: KeyRound },
@@ -38,4 +38,4 @@ const Layout = ({ children, ...props }: React.ComponentProps<'div'>) => {
     );
 };
 
-export default Layout;
+export default SettingsLayout;

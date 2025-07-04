@@ -30,6 +30,19 @@ final class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable, SoftDeletes;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'avatar',
+        'password',
+        'email_verified_at',
+    ];
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>

@@ -26,19 +26,6 @@ it('updates a user successfully', function () {
     Event::assertDispatched(UserHasBeenUpdated::class);
 });
 
-it('is not possible to update the user password with action.', function () {
-    // Arrange
-    Event::fake(UserHasBeenUpdated::class);
-    $user = User::factory()->create();
-    $payload = ['password' => 'new-password'];
-
-    // Act
-    (new UpdateUser)->handle($user, $payload);
-
-    // Assert
-    Event::assertNotDispatched(UserHasBeenUpdated::class);
-})->throws(InvalidArgumentException::class, 'Password is not allowed to update.');
-
 it('set user as unverified if email was changed', function () {
     // Arrange
     Event::fake(UserHasBeenUpdated::class);
