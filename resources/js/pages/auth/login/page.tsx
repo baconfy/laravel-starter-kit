@@ -1,5 +1,4 @@
 import { Link, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -90,8 +89,7 @@ export default function Page({ status }: LoginProps) {
                 </div>
 
                 <div>
-                    <Button type="submit" className="w-full" tabIndex={4} disabled={processing}>
-                        {processing && <LoaderCircle className="size-4 animate-spin" />}
+                    <Button type="submit" variant="primary" className="w-full" tabIndex={4} processing={processing}>
                         Log in
                     </Button>
                 </div>

@@ -36,7 +36,7 @@ export default function AppSidebarLayout({ children }: { children: React.ReactNo
                     </label>
                 </header>
 
-                <main className="flex grow flex-col gap-6 md:gap-8">{children}</main>
+                <main className="flex grow flex-col gap-6 max-lg:mt-8 md:gap-8">{children}</main>
             </div>
         </div>
     );
@@ -50,22 +50,23 @@ const Sidebar = () => {
             <input type="checkbox" id="toggle-sidebar" className="peer hidden" />
             <label
                 htmlFor="toggle-sidebar"
-                className="absolute inset-0 z-[10] hidden backdrop-blur backdrop-brightness-90 transition-all duration-75 peer-checked:flex md:hidden"
+                className="absolute inset-0 z-[10] hidden backdrop-blur backdrop-brightness-80 transition-all duration-75 peer-checked:flex md:hidden"
             ></label>
 
             <aside
                 className={cn(
                     'peer-checked:translate-x-0 peer-checked:delay-0 peer-checked:ease-in-out peer-checked:animate-in',
-                    'absolute inset-0 z-[20] flex w-[90vw] flex-col items-start justify-between border-r bg-background px-8 py-16 shadow',
+                    'absolute inset-0 z-[20] flex w-[90vw] flex-col items-start justify-between border-r border-primary/10 bg-accent px-8 py-12 shadow',
                     'max-lg:-translate-x-full max-lg:transform max-lg:transition-all max-lg:duration-200',
                     'md:relative md:w-[20vw] md:translate-x-0 md:border-none md:shadow-none',
                 )}
             >
-                <header className="relative w-full">
+                <label htmlFor="toggle-sidebar" className="absolute top-4 right-4 md:hidden">
+                    <X className="size-10 stroke-3" />
+                </label>
+
+                <header className="flex w-full items-center justify-between gap-4">
                     <Brand className="text-5xl" />
-                    <label htmlFor="toggle-sidebar" className="absolute -top-6 -right-4 md:hidden">
-                        <X className="size-10 stroke-3" />
-                    </label>
                 </header>
 
                 <main className="w-full space-y-12">
@@ -81,9 +82,9 @@ const Sidebar = () => {
                                                 href={route(item.route)}
                                                 key={JSON.stringify(item)}
                                                 aria-current={route().current(item.route) ? 'page' : 'false'}
-                                                className={cn('group flex items-center gap-2 rounded font-bold tracking-tight uppercase', {
-                                                    'clickable text-muted-foreground hover:bg-primary/10': !route().current(item.route),
-                                                    'cursor-default bg-primary text-background':
+                                                className={cn('group flex items-center gap-2 rounded-lg font-bold tracking-tight uppercase', {
+                                                    'clickable text-foreground hover:bg-foreground/10': !route().current(item.route),
+                                                    'cursor-default bg-primary text-primary-foreground':
                                                         route().current(item.route) || route().current(`${item.route}.*`),
                                                 })}
                                             >
@@ -108,7 +109,7 @@ const Sidebar = () => {
                     <Avatar className="size-16">
                         <AvatarImage src={auth.user.avatar} />
                         <AvatarFallback className="text-2xl font-bold">
-                            <User className="size-10" />
+                            <User className="size-8" />
                         </AvatarFallback>
                     </Avatar>
 

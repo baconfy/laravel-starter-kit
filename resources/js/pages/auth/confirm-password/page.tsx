@@ -1,5 +1,4 @@
 import { useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -43,8 +42,7 @@ export default function Page() {
                     </div>
 
                     <div className="flex items-center">
-                        <Button className="w-full" disabled={processing}>
-                            {processing && <LoaderCircle className="size-4 animate-spin" />}
+                        <Button variant="primary" className="w-full" processing={processing}>
                             Confirm password
                         </Button>
                     </div>

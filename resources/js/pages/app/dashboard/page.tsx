@@ -1,27 +1,15 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Heading } from '@/components/app/heading';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import { useInitials } from '@/hooks/use-initials';
 import AppLayout from '@/layouts/app-layout';
 import { SharedData } from '@/types';
 import { usePage } from '@inertiajs/react';
 
 export default function Page() {
     const { auth } = usePage<SharedData>().props;
-    const getInitials = useInitials();
 
     return (
         <AppLayout title="Dashboard">
-            <div className="flex items-center gap-4">
-                <Avatar className="size-24">
-                    <AvatarImage src={auth.user.avatar} />
-                    <AvatarFallback className="text-3xl font-bold">{getInitials(auth.user.name)}</AvatarFallback>
-                </Avatar>
-
-                <div className="leading-tight">
-                    <p className="font-bold">Welcome,</p>
-                    <h1 className="font-title text-4xl font-bold">{auth.user.name}</h1>
-                </div>
-            </div>
+            <Heading title={`Welcome, ${auth.user.name}`} description="Welcome to your dashboard. Here you can manage your account and settings." />
 
             <div className="flex-1">
                 <div className="grid min-h-full gap-4 max-xl:grid-cols-1 md:grid-flow-col md:grid-rows-3 md:gap-8">

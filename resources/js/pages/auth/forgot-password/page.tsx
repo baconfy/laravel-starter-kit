@@ -1,5 +1,4 @@
 import { Link, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -45,8 +44,7 @@ export default function Page({ status }: { status?: string }) {
                     </div>
 
                     <div>
-                        <Button className="w-full" disabled={processing}>
-                            {processing && <LoaderCircle className="size-4 animate-spin" />}
+                        <Button variant="primary" className="w-full" processing={processing}>
                             Email password reset link
                         </Button>
                     </div>

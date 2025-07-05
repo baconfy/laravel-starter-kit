@@ -8,7 +8,7 @@ test('guests are redirected to the login page', function () {
     $this->get(route('app.settings'))->assertRedirect(route('login'));
 });
 
-test('profile page is displayed', function () {
+test('profile page can be displayed', function () {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)->get(route('app.settings'));

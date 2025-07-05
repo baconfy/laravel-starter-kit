@@ -1,5 +1,4 @@
 import { Link, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -43,7 +42,6 @@ export default function Page() {
                         autoComplete="name"
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
-                        disabled={processing}
                         placeholder="Full name"
                         error={errors.name}
                     />
@@ -59,7 +57,6 @@ export default function Page() {
                         autoComplete="email"
                         value={data.email}
                         onChange={(e) => setData('email', e.target.value)}
-                        disabled={processing}
                         placeholder="email@example.com"
                         error={errors.email}
                     />
@@ -75,7 +72,6 @@ export default function Page() {
                         autoComplete="new-password"
                         value={data.password}
                         onChange={(e) => setData('password', e.target.value)}
-                        disabled={processing}
                         placeholder="Password"
                         error={errors.password}
                     />
@@ -91,15 +87,13 @@ export default function Page() {
                         autoComplete="new-password"
                         value={data.password_confirmation}
                         onChange={(e) => setData('password_confirmation', e.target.value)}
-                        disabled={processing}
                         placeholder="Confirm password"
                         error={errors.password_confirmation}
                     />
                 </div>
 
                 <div>
-                    <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={processing}>
-                        {processing && <LoaderCircle className="size-4 animate-spin" />}
+                    <Button variant="primary" type="submit" className="mt-2 w-full" tabIndex={5} processing={processing}>
                         Create account
                     </Button>
                 </div>

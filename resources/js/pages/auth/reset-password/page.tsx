@@ -1,5 +1,4 @@
 import { useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -85,8 +84,7 @@ export default function Page({ token, email }: ResetPasswordProps) {
                 </div>
 
                 <div>
-                    <Button type="submit" className="mt-4 w-full" disabled={processing}>
-                        {processing && <LoaderCircle className="size-4 animate-spin" />}
+                    <Button variant="primary" type="submit" className="mt-4 w-full" processing={processing}>
                         Reset password
                     </Button>
                 </div>

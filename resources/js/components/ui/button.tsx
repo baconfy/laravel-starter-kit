@@ -3,23 +3,26 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
+import { LoaderCircle } from 'lucide-react';
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center cursor-pointer gap-1',
+    'inline-flex items-center justify-center cursor-pointer transition-all duration-100 gap-1',
     {
         variants: {
             variant: {
-                default: 'bg-primary text-background hover:bg-primary/90',
-                destructive: 'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
-                outline: 'border-2 border-primary bg-transparent hover:bg-primary hover:text-background',
-                secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent',
-                link: 'font-bold text-primary underline-offset-4 hover:underline'
+                link: 'font-bold text-primary underline-offset-4 hover:underline',
+                default: 'bg-button text-button-foreground hover:bg-button/90',
+                primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
+                secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
+                outline: 'border-2 border-button bg-transparent text-button hover:bg-button hover:text-button-foreground',
+                destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
             },
             size: {
-                default: 'rounded h-12 md:h-14 px-6 has-[>svg]:px-4',
-                sm: 'rounded h-10 px-4 has-[>svg]:px-3.5',
-                lg: 'rounded h-10 px-6 has-[>svg]:px-4',
+                default: 'rounded-sm h-12 md:h-14 px-6 has-[>svg]:px-4',
+                sm: 'rounded-xs h-10 px-4 has-[>svg]:px-3.5',
+                xs: 'rounded-xs text-sm h-8 px-4 has-[>svg]:px-3.5',
+                lg: 'rounded-lg h-10 px-6 has-[>svg]:px-4',
                 icon: 'size-9'
             }
         },
@@ -30,8 +33,10 @@ const buttonVariants = cva(
     }
 );
 
-function Button({ className, variant, size, asChild = false, ...props }: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants> & { asChild?: boolean }) {
+function Button({ className, variant, size, processing = false, asChild = false, ...props }: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants> & { asChild?: boolean; processing?: boolean; }) {
     const Comp = asChild ? Slot : 'button';
+
+    props.disabled = processing;
 
     return (
         <Comp
@@ -45,7 +50,12 @@ function Button({ className, variant, size, asChild = false, ...props }: React.C
                 'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
                 buttonVariants({ variant, size, className })
             )}
-        />
+        >
+            <div className="flex items-center justify-center gap-1">
+                {processing && <LoaderCircle className="size-6 animate-spin" />}
+                {props.children}
+            </div>
+        </Comp>
     );
 }
 

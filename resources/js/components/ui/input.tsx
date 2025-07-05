@@ -27,14 +27,14 @@ function Input({ className, type, error, ...props }: React.ComponentProps<'input
                 onFocus={handleFocus}
                 data-slot="input"
                 className={cn(
-                    "transition-all outline-none",
-                    "rounded flex w-full min-w-0 h-12 px-3 md:h-14 md:px-4",
-                    "ring-2 ring-input bg-input text-primary font-bold",
+                    "transition-all outline-none leading-relaxed",
+                    "rounded-xs flex w-full min-w-0 h-14 px-3 md:px-4",
+                    "font-bold bg-input text-input-foreground ring-input ring-2",
                     "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                     "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
                     "focus-visible:ring-primary",
                     "selection:bg-primary selection:text-background",
-                    "placeholder:text-muted-foreground/75 placeholder:font-normal",
+                    "placeholder:text-input-foreground/50",
                     "aria-invalid:ring-destructive/20 aria-invalid:border-destructive",
                     error ? 'ring-destructive-foreground focus-visible:ring-destructive-foreground/50' : '',
                     className

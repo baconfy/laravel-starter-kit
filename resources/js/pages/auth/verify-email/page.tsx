@@ -1,5 +1,4 @@
 import { Link, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -26,8 +25,7 @@ export default function Page({ status }: { status?: string }) {
                     </Alert>
                 )}
 
-                <Button disabled={processing} variant="outline">
-                    {processing && <LoaderCircle className="size-4 animate-spin" />}
+                <Button variant="outline" processing={processing}>
                     Resend verification email
                 </Button>
 
