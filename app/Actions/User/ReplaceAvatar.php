@@ -17,8 +17,8 @@ final readonly class ReplaceAvatar
     public function handle(User $user, UploadedFile $file): bool
     {
         return DB::transaction(function () use ($user, $file) {
-            if ($user->avatar && Storage::exists($user->avatar)) {
-                Storage::delete($user->avatar);
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
             }
 
             $avatar = $file->store('avatars', 'public');

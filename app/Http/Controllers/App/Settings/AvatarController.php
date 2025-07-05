@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 final class AvatarController
 {
     /**
-     * Update the user's profile settings.
+     * Update the user's avatar.
      */
     public function update(AvatarRequest $request, ReplaceAvatar $replaceAvatar): RedirectResponse
     {
@@ -24,13 +24,15 @@ final class AvatarController
     }
 
     /**
-     * Delete the user's account.
+     * Delete the user's avatar.
      */
     public function destroy(Request $request, UpdateUser $updateUser): RedirectResponse
     {
-        Storage::delete($request->user()->avatar);
+        if ($request->user()->avatar && Storage::disk('public')->exists($request->user()->avatar)) {
+            Storage::disk('public')->delete($request->user()->avatar);
 
-        $updateUser->handle($request->user(), ['avatar' => null]);
+            $updateUser->handle($request->user(), ['avatar' => null]);
+        }
 
         return redirect(route('app.settings'));
     }

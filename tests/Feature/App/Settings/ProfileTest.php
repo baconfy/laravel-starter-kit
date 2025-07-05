@@ -75,7 +75,7 @@ it('can not upload big avatar.', function (): void {
 it('can update user avatar successfully with valid data.', function (): void {
     Storage::fake('public');
     $file = UploadedFile::fake()->image('avatar.jpg');
-    $user = User::factory()->create(['avatar' => $file->store('avatars')])->refresh();
+    $user = User::factory()->create(['avatar' => $file->store('avatars', 'public')])->refresh();
 
     $this->actingAs($user)->post(route('app.settings.avatar'), ['image' => $file]);
 
@@ -84,11 +84,12 @@ it('can update user avatar successfully with valid data.', function (): void {
 
 it('can remove user avatar.', function (): void {
     Storage::fake('public');
-    $file = UploadedFile::fake()->image('avatar.jpg');
-    $user = User::factory()->create(['avatar' => $file->store('avatars')]);
+    $avatar = UploadedFile::fake()->image('avatar.jpg');
+    $user = User::factory()->create(['avatar' => $avatar->store('avatars', 'public')]);
 
     $this->actingAs($user)->delete(route('app.settings.avatar'));
 
-    expect($user->refresh()->avatar)->toBeNull();
-    Storage::disk('public')->assertMissing($file->hashName('avatars'));
+    $user->refresh();
+    expect($user->avatar)->toBeNull();
+    Storage::disk('public')->assertMissing($avatar->hashName('avatars'));
 });

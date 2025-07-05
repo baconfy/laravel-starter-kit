@@ -51,11 +51,16 @@ const UploadAvatar = () => {
                                 htmlFor="avatar"
                                 className="flex h-8 clickable cursor-pointer items-center justify-center rounded-xs border-2 border-button px-2 text-sm font-bold"
                             >
-                                Upload
+                                {auth.user.avatar ? 'Change avatar' : 'Upload avatar'}
                             </label>
-                            <Button variant="destructive" size="xs" className="w-fit" asChild>
-                                <Link href={'/'}>Delete</Link>
-                            </Button>
+
+                            {auth.user.avatar && (
+                                <Button variant="destructive" size="xs" className="w-fit cursor-pointer" asChild>
+                                    <Link href={route('app.settings.avatar')} method="delete">
+                                        Remove avatar
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
                     </form>
                 </div>
