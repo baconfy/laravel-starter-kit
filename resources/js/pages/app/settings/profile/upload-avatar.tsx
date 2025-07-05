@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 const UploadAvatar = () => {
     const { auth } = usePage<SharedData>().props;
     const [fileInputKey, setFileInputKey] = useState(0);
-    const { data, setData, post, processing, reset } = useForm<{ image: File | null }>({ image: null });
+    const { data, setData, post, reset } = useForm<{ image: File | null }>({ image: null });
 
     useEffect(() => {
         if (data.image)

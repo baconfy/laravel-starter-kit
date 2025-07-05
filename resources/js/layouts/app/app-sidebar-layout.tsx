@@ -3,15 +3,19 @@ import { Brand, BrandIcon } from '@/components/ui/brand';
 import { cn } from '@/lib/utils';
 import { SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { AlignRight, Home, LayoutDashboard, Settings, User, X } from 'lucide-react';
+import { AlignRight, Book, HandPlatter, Home, LayoutDashboard, User, X } from 'lucide-react';
 import React from 'react';
 
 const navigation = [
     {
         title: 'Menu',
+        items: [{ label: 'Dashboard', route: 'app.dashboard', icon: LayoutDashboard }],
+    },
+    {
+        title: 'Catalog',
         items: [
-            { label: 'Dashboard', route: 'app.dashboard', icon: LayoutDashboard },
-            { label: 'Settings', route: 'app.settings', icon: Settings },
+            { label: 'Posts', route: 'welcome', icon: Book },
+            { label: 'Services', route: 'welcome', icon: HandPlatter },
         ],
     },
     {
@@ -105,15 +109,17 @@ const Sidebar = () => {
                     })}
                 </main>
 
-                <footer className="flex w-full flex-col items-center justify-center gap-2">
-                    <Avatar className="size-16">
-                        <AvatarImage src={auth.user.avatar} />
-                        <AvatarFallback className="text-2xl font-bold">
-                            <User className="size-8" />
-                        </AvatarFallback>
-                    </Avatar>
+                <footer className="flex w-full justify-center">
+                    <Link href={route('app.settings')} className="flex clickable flex-col items-center justify-center gap-2">
+                        <Avatar className="size-16">
+                            <AvatarImage src={auth.user.avatar} />
+                            <AvatarFallback className="text-2xl font-bold">
+                                <User className="size-8" />
+                            </AvatarFallback>
+                        </Avatar>
 
-                    <h1 className="line-clamp-1 font-title text-2xl font-bold">{auth.user.name}</h1>
+                        <h1 className="line-clamp-1 font-title text-2xl font-bold">{auth.user.name}</h1>
+                    </Link>
                 </footer>
             </aside>
         </>
