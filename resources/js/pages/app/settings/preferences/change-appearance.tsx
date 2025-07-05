@@ -19,16 +19,14 @@ const ChangeAppearance = () => {
             </div>
 
             <div className="col-span-7 content-center">
-                <div className={cn('inline-flex w-full gap-1 rounded bg-accent p-1 md:w-fit dark:bg-neutral-800')}>
+                <div className={cn('inline-flex w-full gap-1 rounded bg-accent p-1.5 md:w-fit')}>
                     {tabs.map(({ value, icon: Icon, label }) => (
                         <button
                             key={value}
                             onClick={() => updateAppearance(value)}
                             className={cn(
-                                'flex w-full items-center justify-center rounded px-4 py-2 transition-colors',
-                                appearance === value
-                                    ? 'bg-primary text-primary-foreground shadow-xs'
-                                    : 'text-neutral-500 hover:bg-neutral-200/60 hover:text-black dark:text-neutral-400 dark:hover:bg-neutral-700/60',
+                                'flex w-full cursor-pointer items-center justify-center rounded px-4 py-2 font-bold transition-all duration-150',
+                                appearance === value ? 'bg-primary text-primary-foreground shadow-xs' : 'text-accent-foreground hover:bg-primary/10',
                             )}
                         >
                             <Icon className="-ml-1 h-4 w-4" />

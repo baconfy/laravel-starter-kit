@@ -82,7 +82,7 @@ const Sidebar = () => {
                                                 href={route(item.route)}
                                                 key={JSON.stringify(item)}
                                                 aria-current={route().current(item.route) ? 'page' : 'false'}
-                                                className={cn('group flex items-center gap-2 rounded-lg font-bold tracking-tight uppercase', {
+                                                className={cn('group flex items-center gap-2 rounded font-bold tracking-tight uppercase', {
                                                     'clickable text-foreground hover:bg-foreground/10': !route().current(item.route),
                                                     'cursor-default bg-primary text-primary-foreground':
                                                         route().current(item.route) || route().current(`${item.route}.*`),

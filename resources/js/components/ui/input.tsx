@@ -28,7 +28,7 @@ function Input({ className, type, error, ...props }: React.ComponentProps<'input
                 data-slot="input"
                 className={cn(
                     "transition-all outline-none leading-relaxed",
-                    "rounded-xs flex w-full min-w-0 h-14 px-3 md:px-4",
+                    "rounded flex w-full min-w-0 h-14 px-3 md:px-4",
                     "font-bold bg-input text-input-foreground ring-input ring-2",
                     "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                     "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",

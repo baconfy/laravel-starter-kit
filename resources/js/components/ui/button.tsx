@@ -19,8 +19,8 @@ const buttonVariants = cva(
                 destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
             },
             size: {
-                default: 'rounded-sm h-12 md:h-14 px-6 has-[>svg]:px-4',
-                sm: 'rounded-xs h-10 px-4 has-[>svg]:px-3.5',
+                default: 'rounded h-12 md:h-14 px-6 has-[>svg]:px-4',
+                sm: 'rounded-sm h-10 px-4 has-[>svg]:px-3.5',
                 xs: 'rounded-xs text-sm h-8 px-4 has-[>svg]:px-3.5',
                 lg: 'rounded-lg h-10 px-6 has-[>svg]:px-4',
                 icon: 'size-9'

@@ -9,7 +9,7 @@ export function Brand({ ...props }: ComponentPropsWithoutRef<'p'>) {
 
 export function BrandIcon({ ...props }: ComponentPropsWithoutRef<'p'>) {
     return (
-        <div className="rounded-lg flex items-center justify-center size-12 bg-primary/10">
+        <div className="rounded flex items-center justify-center size-12 bg-primary/10">
             <p className={cn('font-brand font-bold text-primary text-3xl', props.className)}>B.</p>
         </div>
     );
